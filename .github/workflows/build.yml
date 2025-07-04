@@ -23,6 +23,7 @@ env:
 jobs:
   build-windows:
     strategy:
+      max-parallel: 1
       fail-fast: false
       matrix:
         platform:
@@ -49,6 +50,7 @@ jobs:
 
   build-linux:
     strategy:
+      max-parallel: 1
       fail-fast: false
       matrix:
         platform:
@@ -79,6 +81,7 @@ jobs:
 
   build-macos:
     strategy:
+      max-parallel: 1
       fail-fast: false
       matrix:
         platform:
