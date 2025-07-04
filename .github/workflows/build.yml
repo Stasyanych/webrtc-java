@@ -30,7 +30,7 @@ jobs:
           - name: windows_x86_64
             runs-on: windows-2022
         java: [17]
-    runs-on: ${{ matrix.platform.runs-on }}
+    runs-on: [self-hosted, X64, Windows]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -61,7 +61,7 @@ jobs:
           - name: linux_x86-64
             runs-on: ubuntu-22.04
         java: [17]
-    runs-on: ${{ matrix.platform.runs-on }}
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -69,35 +69,6 @@ jobs:
       - id: prepare
         name: Prepare build
         uses: ./.github/actions/prepare-linux
-
-      - id: maven-build
-        name: Maven build
-        uses: ./.github/actions/build
-        with:
-          java-version: ${{ matrix.java }}
-          platform-name: ${{ matrix.platform.name }}
-          maven-username: ${{ secrets.MAVEN_USERNAME }}
-          maven-password: ${{ secrets.MAVEN_TOKEN }}
-
-  build-macos:
-    strategy:
-      max-parallel: 1
-      fail-fast: false
-      matrix:
-        platform:
-          - name: macos_x86-64
-            runs-on: macos-13
-          - name: macos_arm64
-            runs-on: macos-14
-        java: [17]
-    runs-on: ${{ matrix.platform.runs-on }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - id: prepare-build
-        name: Prepare build
-        uses: ./.github/actions/prepare-macos
 
       - id: maven-build
         name: Maven build
