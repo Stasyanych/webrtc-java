@@ -27,7 +27,7 @@ jobs:
       matrix:
         platform:
           - name: windows_x86_64
-            runs-on: self-hosted
+            runs-on: windows-2022
         java: [17]
     runs-on: ${{ matrix.platform.runs-on }}
     steps:
@@ -53,11 +53,11 @@ jobs:
       matrix:
         platform:
           - name: linux_arm
-            runs-on: self-hosted
+            runs-on: ubuntu-22.04
           - name: linux_arm64
-            runs-on: self-hosted
+            runs-on: ubuntu-22.04
           - name: linux_x86-64
-            runs-on: self-hosted
+            runs-on: ubuntu-22.04
         java: [17]
     runs-on: ${{ matrix.platform.runs-on }}
     steps:
@@ -82,9 +82,9 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-          - name: self-hosted
+          - name: macos_x86-64
             runs-on: macos-13
-          - name: self-hosted
+          - name: macos_arm64
             runs-on: macos-14
         java: [17]
     runs-on: ${{ matrix.platform.runs-on }}
